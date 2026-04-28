@@ -43,22 +43,31 @@ export default function HeroSection() {
           Building the Future of the <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-tertiary-container">Web</span>
         </h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-          I craft high-performance, accessible, and visually stunning digital experiences using modern frontend technologies and human-centered design principles.
+         A creative Frontend Developer focused on modern UI design, responsive web development, and interactive user experiences using React and Next.js.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-stack-md justify-center md:justify-start">
-          <button className="bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold text-xl hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all">
+          <a href="/myself.pdf" download="myself.pdf" className="bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold text-xl hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all text-center">
             Get CV
-          </button>
+          </a>
           <div className="flex gap-4">
-            <a className="w-12 h-12 flex items-center justify-center rounded-full glass-card hover:text-primary-container transition-colors" href="#">
-              <span className="material-symbols-outlined">code</span>
+            <a className="w-12 h-12 flex items-center justify-center rounded-full glass-card hover:text-primary-container hover:scale-110 transition-all" href="https://www.linkedin.com/in/riad-shekh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
             </a>
-            <a className="w-12 h-12 flex items-center justify-center rounded-full glass-card hover:text-primary-container transition-colors" href="#">
-              <span className="material-symbols-outlined">hub</span>
+            <a className="w-12 h-12 flex items-center justify-center rounded-full glass-card hover:text-primary-container hover:scale-110 transition-all" href="https://github.com/djriad157764-creator" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
             </a>
-            <a className="w-12 h-12 flex items-center justify-center rounded-full glass-card hover:text-primary-container transition-colors" href="#">
-              <span className="material-symbols-outlined">share</span>
+            <a className="w-12 h-12 flex items-center justify-center rounded-full glass-card hover:text-primary-container hover:scale-110 transition-all" href="https://x.com/md32316" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+              </svg>
             </a>
           </div>
         </div>

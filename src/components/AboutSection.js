@@ -44,7 +44,7 @@ export default function AboutSection() {
         <h2 className="font-h2 text-h2">About <span className="text-primary-container">Me</span></h2>
         <div className="w-20 h-1 bg-primary-container rounded-full"></div>
         <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-          With over half a decade of experience in the digital trenches, I've evolved from a curious coder to a technical architect. I specialize in bridging the gap between complex backend systems and intuitive user interfaces. My philosophy is simple: performance is a feature, and accessibility is a right.
+          I am a passionate Frontend Developer skilled in building modern, responsive, and user-friendly web applications. I work with HTML5, CSS3, JavaScript (ES6), React.js, and Next.js, along with modern UI tools like Tailwind CSS, DaisyUI, and HeroUI. I enjoy creating clean interfaces with smooth animations and focus on performance, usability, and detail. Currently, I am enhancing my skills in advanced frontend technologies and building professional portfolio projects.
         </p>
         <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
           When I'm not pushing pixels or optimizing bundle sizes, you can find me exploring the latest in decentralized web technologies or mentoring aspiring developers.
