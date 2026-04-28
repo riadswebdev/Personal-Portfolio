@@ -1,13 +1,61 @@
+"use client";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function SkillsSection() {
+  const container = useRef(null);
+
   const skills = [
-    { name: "JavaScript", percentage: 95, offset: "12.5" },
-    { name: "React.js", percentage: 90, offset: "25.1" },
-    { name: "Tailwind CSS", percentage: 98, offset: "5.0" },
-    { name: "Next.js", percentage: 85, offset: "37.6" },
+    { name: "JavaScript", percentage: 95, offset: 12.5 },
+    { name: "React.js", percentage: 90, offset: 25.1 },
+    { name: "Tailwind CSS", percentage: 98, offset: 5.0 },
+    { name: "Next.js", percentage: 85, offset: 37.6 },
   ];
 
+  useGSAP(() => {
+    // Animate cards (scale up and glow)
+    gsap.fromTo(".skill-card", 
+      { 
+        opacity: 0, 
+        scale: 0.8,
+      },
+      {
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top 80%",
+        },
+        opacity: 1,
+        scale: 1,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "back.out(1.7)"
+      }
+    );
+
+    // Animate circular progress rings
+    gsap.fromTo(".skill-ring", 
+      { strokeDashoffset: 251.2 },
+      {
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top 80%",
+        },
+        strokeDashoffset: (index) => skills[index].offset,
+        duration: 1.5,
+        ease: "power2.out",
+        delay: 0.3
+      }
+    );
+  }, { scope: container, dependencies: [] });
+
   return (
-    <section className="py-section-gap" id="skills">
+    <section ref={container} className="py-section-gap" id="skills">
       <div className="text-center mb-stack-lg space-y-4">
         <h2 className="font-h2 text-h2">Technical <span className="text-primary-container">Expertise</span></h2>
         <p className="text-on-surface-variant max-w-2xl mx-auto">Weaponry of choice for building future-proof digital landscapes.</p>
@@ -15,7 +63,7 @@ export default function SkillsSection() {
       
       <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter">
         {skills.map((skill, index) => (
-          <div key={index} className="glass-card p-stack-lg rounded-2xl flex flex-col items-center gap-4 group">
+          <div key={index} className="skill-card glass-card p-stack-lg rounded-2xl flex flex-col items-center gap-4 group transition-shadow duration-300">
             <div className="relative w-24 h-24 flex items-center justify-center">
               <svg className="w-full h-full transform -rotate-90">
                 <circle className="text-surface-container-highest" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" strokeWidth="6"></circle>
@@ -27,7 +75,7 @@ export default function SkillsSection() {
                   r="40" 
                   stroke="currentColor" 
                   strokeDasharray="251.2" 
-                  strokeDashoffset={skill.offset} 
+                  style={{ strokeDashoffset: 251.2 }}
                   strokeWidth="6"
                 ></circle>
               </svg>

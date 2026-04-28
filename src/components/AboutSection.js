@@ -1,7 +1,46 @@
+"use client";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function AboutSection() {
+  const container = useRef(null);
+
+  useGSAP(() => {
+    // Fade-in from left for text
+    gsap.from(".about-text", {
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 80%",
+      },
+      x: -50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    // Fade-in from right for stats grid
+    gsap.from(".about-stats > div", {
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 80%",
+      },
+      x: 50,
+      opacity: 0,
+      stagger: 0.15,
+      duration: 1,
+      ease: "power3.out"
+    });
+  }, { scope: container });
+
   return (
-    <section className="py-section-gap grid grid-cols-1 md:grid-cols-2 gap-24 items-center" id="about">
-      <div className="space-y-stack-md">
+    <section ref={container} className="py-section-gap grid grid-cols-1 md:grid-cols-2 gap-24 items-center overflow-hidden" id="about">
+      <div className="about-text space-y-stack-md">
         <h2 className="font-h2 text-h2">About <span className="text-primary-container">Me</span></h2>
         <div className="w-20 h-1 bg-primary-container rounded-full"></div>
         <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
@@ -12,7 +51,7 @@ export default function AboutSection() {
         </p>
       </div>
       
-      <div className="grid grid-cols-2 gap-gutter">
+      <div className="about-stats grid grid-cols-2 gap-gutter">
         <div className="glass-card p-stack-lg rounded-2xl flex flex-col items-center text-center">
           <span className="text-h2 font-h2 text-primary-container">50+</span>
           <p className="text-on-surface-variant font-label-caps">Projects Delivered</p>

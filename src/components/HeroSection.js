@@ -1,11 +1,43 @@
+"use client";
 import Image from "next/image";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export default function HeroSection() {
+  const container = useRef(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    // Stagger text and buttons
+    tl.from(".hero-content > *", {
+      y: 30,
+      opacity: 0,
+      stagger: 0.15,
+      duration: 1,
+      delay: 0.2
+    })
+    // Animate the image in
+    .from(".hero-image-container", {
+      scale: 0.8,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power2.out"
+    }, "-=0.8")
+    // Fade in the background glow smoothly
+    .from(".hero-bg-glow", {
+      opacity: 0,
+      duration: 2,
+      ease: "none"
+    }, 0);
+  }, { scope: container });
+
   return (
-    <section className="min-h-[819px] flex flex-col md:flex-row items-center justify-between py-section-gap gap-stack-lg relative" id="home">
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary-container/10 blur-[120px] -z-10 rounded-full"></div>
+    <section ref={container} className="min-h-[819px] flex flex-col md:flex-row items-center justify-between py-section-gap gap-stack-lg relative" id="home">
+      <div className="hero-bg-glow absolute top-0 left-0 w-96 h-96 bg-primary-container/10 blur-[120px] -z-10 rounded-full"></div>
       
-      <div className="flex-1 space-y-stack-md text-center md:text-left">
+      <div className="hero-content flex-1 space-y-stack-md text-center md:text-left">
         <p className="font-label-caps text-label-caps text-primary-container uppercase">Frontend Architect</p>
         <h1 className="font-h1 text-h1 text-on-surface max-w-2xl">
           Building the Future of the <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-tertiary-container">Web</span>
@@ -15,8 +47,8 @@ export default function HeroSection() {
         </p>
         
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-stack-md justify-center md:justify-start">
-          <button className="bg-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all">
-            Download Resume
+          <button className="bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold text-xl hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all">
+            Get CV
           </button>
           <div className="flex gap-4">
             <a className="w-12 h-12 flex items-center justify-center rounded-full glass-card hover:text-primary-container transition-colors" href="#">
@@ -32,7 +64,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="flex-1 flex justify-center md:justify-end relative">
+      <div className="hero-image-container flex-1 flex justify-center md:justify-end relative">
         <div className="relative w-80 h-80 md:w-96 md:h-96">
           <div className="absolute inset-0 rounded-3xl border-2 border-primary-container/30 rotate-6 -z-10"></div>
           <div className="absolute inset-0 rounded-3xl border-2 border-tertiary-container/20 -rotate-3 -z-10"></div>

@@ -1,6 +1,17 @@
+"use client";
 import Image from "next/image";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function ProjectsSection() {
+  const container = useRef(null);
+  
   const projects = [
     {
       title: "Nexus Analytics",
@@ -25,8 +36,40 @@ export default function ProjectsSection() {
     }
   ];
 
+  useGSAP(() => {
+    // Stagger reveal animation for project cards
+    gsap.from(".project-card", {
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 80%",
+      },
+      y: 50,
+      scale: 0.9,
+      opacity: 0,
+      stagger: 0.2,
+      duration: 1,
+      ease: "power3.out"
+    });
+  }, { scope: container });
+
+  const handleMouseEnter = (e) => {
+    const img = e.currentTarget.querySelector('.project-img');
+    const overlay = e.currentTarget.querySelector('.project-overlay');
+    
+    gsap.to(img, { scale: 1.1, duration: 0.5, ease: "power2.out" });
+    gsap.to(overlay, { opacity: 0.8, duration: 0.5, ease: "power2.out" });
+  };
+
+  const handleMouseLeave = (e) => {
+    const img = e.currentTarget.querySelector('.project-img');
+    const overlay = e.currentTarget.querySelector('.project-overlay');
+    
+    gsap.to(img, { scale: 1, duration: 0.5, ease: "power2.out" });
+    gsap.to(overlay, { opacity: 0.6, duration: 0.5, ease: "power2.out" });
+  };
+
   return (
-    <section className="py-section-gap" id="projects">
+    <section ref={container} className="py-section-gap overflow-hidden" id="projects">
       <div className="flex justify-between items-end mb-stack-lg">
         <div className="space-y-2">
           <h2 className="font-h2 text-h2">Selected <span className="text-primary-container">Works</span></h2>
@@ -37,24 +80,29 @@ export default function ProjectsSection() {
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
         {projects.map((project, index) => (
-          <div key={index} className="glass-card rounded-2xl overflow-hidden flex flex-col group">
+          <div 
+            key={index} 
+            className="project-card glass-card rounded-2xl overflow-hidden flex flex-col cursor-pointer"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <div className="relative h-64 overflow-hidden">
               <Image 
                 src={project.image} 
                 alt={project.alt}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                className="project-img object-cover origin-center"
                 unoptimized
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+              <div className="project-overlay absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
               <div className="absolute bottom-4 left-4 flex gap-2">
                 {project.tags.map((tag, i) => (
-                  <span key={i} className="bg-surface-variant/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold border border-white/10">{tag}</span>
+                  <span key={i} className="bg-surface-variant/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold border border-white/10 z-10">{tag}</span>
                 ))}
               </div>
             </div>
             
-            <div className="p-stack-md flex-1 flex flex-col">
+            <div className="p-stack-md flex-1 flex flex-col z-10">
               <h3 className="text-h3 font-h3 mb-2">{project.title}</h3>
               <p className="text-on-surface-variant text-sm flex-1 mb-4">{project.description}</p>
               <button className="w-full py-3 rounded-lg border border-primary-container/30 text-primary-container hover:bg-primary-container hover:text-on-primary-container transition-all flex items-center justify-center gap-2">

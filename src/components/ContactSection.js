@@ -1,9 +1,35 @@
+"use client";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function ContactSection() {
+  const container = useRef(null);
+
+  useGSAP(() => {
+    // Fade up animation for the contact card
+    gsap.from(".contact-card", {
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 85%",
+      },
+      y: 100,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out"
+    });
+  }, { scope: container });
+
   return (
-    <section className="py-section-gap relative" id="contact">
+    <section ref={container} className="py-section-gap relative" id="contact">
       <div className="absolute -bottom-24 right-0 w-80 h-80 bg-tertiary-container/10 blur-[100px] -z-10 rounded-full"></div>
       
-      <div className="glass-card rounded-[2rem] p-stack-lg md:p-16 flex flex-col md:flex-row gap-12 border-primary-container/20">
+      <div className="contact-card glass-card rounded-[2rem] p-stack-lg md:p-16 flex flex-col md:flex-row gap-12 border-primary-container/20">
         <div className="flex-1 space-y-stack-md">
           <h2 className="text-h2 font-h2">Initiate <span className="text-primary-container">Contact</span></h2>
           <p className="text-on-surface-variant text-body-lg">Have a vision for a groundbreaking project? Let's discuss how my technical architecture can help you achieve it.</p>
