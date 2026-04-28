@@ -2,6 +2,8 @@ import TopNavBar from "@/components/TopNavBar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
+import DetailedSkillsSection from "@/components/DetailedSkillsSection";
+import QualificationsSection from "@/components/QualificationsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -14,6 +16,8 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
+        <DetailedSkillsSection />
+        <QualificationsSection />
         <ProjectsSection />
         <ContactSection />
       </main>

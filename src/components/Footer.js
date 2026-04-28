@@ -15,7 +15,7 @@ export default function Footer() {
           <p className="text-slate-500">© 2024 DevArchitect. Built with precision.</p>
         </div>
         <div className="flex gap-8">
-          <a className="text-slate-500 hover:text-cyan-400 transition-colors hover:translate-y-[-2px] transition-transform" href="mailto:hello@devarchitect.io">Email</a>
+          <a className="text-slate-500 hover:text-cyan-400 transition-colors hover:translate-y-[-2px] transition-transform" href="[EMAIL_ADDRESS]">Email</a>
           <a className="text-slate-500 hover:text-cyan-400 transition-colors hover:translate-y-[-2px] transition-transform" href="#">Phone</a>
           <a className="text-slate-500 hover:text-cyan-400 transition-colors hover:translate-y-[-2px] transition-transform" href="#">Chat</a>
         </div>
