@@ -14,55 +14,54 @@ export default function ProjectsSection() {
   const container = useRef(null);
   const [filter, setFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
-  
   const projects = [
     {
-      title: "Online Book Borrowing Platform",
-      description: "A full-featured digital library platform with AI-powered book recommendations, reading progress tracking, and wishlist management.",
-      image: "https://i.ibb.co.com/r2n7ZZkd/Screenshot-2026-04-29-195442.png",
-      tags: ["Next.js", "Tailwind CSS", "DaisyUI", "BetterAuth"],
-      features: [
-        "Book browsing with detailed views",
-        "Read / Wishlist management",
-        "Reading progress tracking",
-        "AI-powered recommendations",
-        "Responsive design",
-      ],
-      live: "https://online-book-borrowing-platform-delta.vercel.app",
-      github: "https://github.com/djriad157764-creator",
-      alt: "Online Book Borrowing Platform"
-    },
-    {
-      title: "Personal Portfolio",
-      description: "A modern developer portfolio built with Next.js featuring GSAP scroll animations, glassmorphism design, and a typewriter hero section.",
+      title: "Portfolio",
+      description: "A modern, interactive, and highly performant personal portfolio web application.",
       image: "https://i.ibb.co.com/20dwKB91/Screenshot-2026-04-29-174736.png",
-      tags: ["Next.js", "GSAP", "Tailwind CSS", "Framer Motion"],
+      tags: ["Next.js", "React", "Tailwind CSS"],
       features: [
-        "Animated hero with typewriter effect",
-        "GSAP scroll-triggered animations",
-        "Glassmorphism UI design",
+        "Next.js 16 (App Router) & React 19",
+        "Tailwind CSS 4 styling",
+        "GSAP & @gsap/react animations",
+        "Lenis smooth scrolling",
         "Fully responsive layout",
-        "Contact form integration",
       ],
-      live: "https://djriad157764-creator.github.io",
-      github: "https://github.com/djriad157764-creator/Personal-Portfolio",
+      live: "https://personal-portfolio-five-theta-65.vercel.app/",
+      github: "https://github.com/djriad157764-creator",
       alt: "Personal Portfolio"
     },
     {
-      title: "Frontend Learning Journey",
-      description: "A showcase of projects and assignments completed on Programming Hero — covering HTML, CSS, JavaScript, React, and Next.js fundamentals.",
-      image: "https://i.ibb.co.com/KzzprSCw/Screenshot-2026-04-29-200606.png",
-      tags: ["React", "JavaScript", "CSS", "HTML"],
+      title: "Book-Vibe",
+      description: "An engaging web application for book lovers to explore, rate, and curate reading lists with AI recommendations and progress tracking.",
+      image: "https://i.ibb.co.com/r2n7ZZkd/Screenshot-2026-04-29-195442.png",
+      tags: ["React", "Tailwind CSS", "DaisyUI"],
       features: [
-        "HTML & CSS fundamentals",
-        "JavaScript ES6+ projects",
-        "React component exercises",
-        "Responsive layouts",
-        "Problem-solving challenges",
+        "Vite & React 19",
+        "Tailwind CSS & DaisyUI",
+        "React Router v7",
+        "Recharts data visualization",
+        "Google Gemini AI integration",
       ],
-      live: "#",
+      live: "https://books-vibe-ten.vercel.app/",
       github: "https://github.com/djriad157764-creator",
-      alt: "Programming Hero Learning Projects"
+      alt: "Book Vibe Platform"
+    },
+    {
+      title: "Fitness Landing Page",
+      description: "A modern and fully responsive Fitness Landing Page demonstrating a clean UI design with multiple sections focused on fitness, workouts, and team introduction.",
+      image: "https://i.ibb.co.com/KzzprSCw/Screenshot-2026-04-29-200606.png",
+      tags: ["React", "Tailwind CSS", "HTML5"],
+      features: [
+        "HTML5 & CSS3 structure",
+        "Tailwind CSS styling",
+        "DaisyUI components",
+        "React.js integration",
+        "Fully responsive design",
+      ],
+      live: "https://fitness-landing-page-chi-eight.vercel.app/",
+      github: "https://github.com/djriad157764-creator",
+      alt: "Fitness Landing Page"
     }
   ];
 
@@ -72,6 +71,18 @@ export default function ProjectsSection() {
   });
 
   useGSAP(() => {
+    // Title animation
+    gsap.from(".section-title", {
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 80%",
+      },
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
     // Stagger reveal animation for project cards
     gsap.from(".project-card", {
       scrollTrigger: {
@@ -130,7 +141,7 @@ export default function ProjectsSection() {
     <section ref={container} className="py-section-gap overflow-hidden" id="projects">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-stack-lg gap-6">
         <div className="space-y-2">
-          <h2 className="font-h2 text-h2">Selected <span className="text-primary-container">Works</span></h2>
+          <h2 className="section-title font-h2 text-h2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 pb-2">Selected Works</h2>
           <p className="text-on-surface-variant">A curated gallery of recent technical achievements.</p>
         </div>
         

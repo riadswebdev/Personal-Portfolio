@@ -70,6 +70,18 @@ export default function DetailedSkillsSection() {
 
 
   useGSAP(() => {
+    // Title animation
+    gsap.from(".section-title", {
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 80%",
+      },
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
     // Animate Cards
     gsap.from(".glass-card", {
       scrollTrigger: {
@@ -102,8 +114,8 @@ export default function DetailedSkillsSection() {
   return (
     <section ref={container} className="py-24 px-4 sm:px-6" id="detailed-skills">
       <div className="text-center mb-16 space-y-4">
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-          Technical <span className="text-primary">Skills</span>
+        <h2 className="section-title text-4xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 pb-2">
+          Technical Skills
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto text-lg">
           A comprehensive overview of my technical stack and the tools I leverage to build scalable, high-performance applications.
