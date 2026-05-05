@@ -12,6 +12,18 @@ export default function QualificationsSection() {
   const container = useRef(null);
 
   useGSAP(() => {
+    // Title animation
+    gsap.from(".section-title", {
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 80%",
+      },
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
     gsap.from(".qual-card", {
       scrollTrigger: {
         trigger: container.current,
@@ -28,7 +40,7 @@ export default function QualificationsSection() {
   return (
     <section ref={container} className="py-section-gap" id="qualifications">
       <div className="text-center mb-stack-lg space-y-4">
-        <h2 className="font-h2 text-h2"><span className="text-primary-container">Qualifications</span></h2>
+        <h2 className="section-title font-h2 text-h2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 pb-2">Qualifications</h2>
         <p className="text-on-surface-variant max-w-2xl mx-auto">My academic background and professional journey.</p>
       </div>
 

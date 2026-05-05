@@ -43,6 +43,18 @@ export default function ContactSection() {
   };
 
   useGSAP(() => {
+    // Title animation
+    gsap.from(".section-title", {
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 80%",
+      },
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
     // Fade up animation for the contact card
     gsap.from(".contact-card", {
       scrollTrigger: {
@@ -62,7 +74,7 @@ export default function ContactSection() {
       
       <div className="contact-card glass-card rounded-[2rem] p-stack-lg md:p-16 flex flex-col md:flex-row gap-12 border-primary-container/20">
         <div className="flex-1 space-y-stack-md">
-          <h2 className="text-h2 font-h2">Initiate <span className="text-primary-container">Contact</span></h2>
+          <h2 className="section-title text-h2 font-h2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 pb-2">Initiate Contact</h2>
           <p className="text-on-surface-variant text-body-lg">A creative Frontend Developer focused on modern UI design, responsive web development, and interactive user experiences using React and Next.js.</p>
           
           <div className="space-y-6 pt-4">
@@ -76,23 +88,23 @@ export default function ContactSection() {
               </div>
             </a>
             
-            <a href="tel:+8801314674108" className="flex items-center gap-4 group cursor-pointer hover:opacity-80 transition-opacity">
+            <a href="https://linkedin.com/in/riad-shekh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group cursor-pointer hover:opacity-80 transition-opacity">
               <div className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-on-primary-container transition-all">
-                <span className="material-symbols-outlined">call</span>
+                <span className="material-symbols-outlined">work</span>
               </div>
               <div>
-                <p className="text-xs font-label-caps text-slate-500">PHONE</p>
-                <p className="text-on-surface font-bold">+8801314674108</p>
+                <p className="text-xs font-label-caps text-slate-500">LINKEDIN</p>
+                <p className="text-on-surface font-bold">linkedin.com/in/riad-shekh</p>
               </div>
             </a>
             
-            <a href="https://wa.me/8801314674108" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group cursor-pointer hover:opacity-80 transition-opacity">
+            <a href="https://github.com/djriad157764-creator" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group cursor-pointer hover:opacity-80 transition-opacity">
               <div className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-on-primary-container transition-all">
-                <span className="material-symbols-outlined">chat</span>
+                <span className="material-symbols-outlined">code</span>
               </div>
               <div>
-                <p className="text-xs font-label-caps text-slate-500">WHATSAPP</p>
-                <p className="text-on-surface font-bold">+8801314674108</p>
+                <p className="text-xs font-label-caps text-slate-500">GITHUB</p>
+                <p className="text-on-surface font-bold">github.com/djriad157764-creator</p>
               </div>
             </a>
           </div>
@@ -119,7 +131,7 @@ export default function ContactSection() {
               className="w-full bg-primary-container text-on-primary-container font-bold py-4 rounded-lg hover:brightness-110 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100 disabled:hover:shadow-none transition-all uppercase tracking-widest mt-4"
               type="submit"
             >
-              {submitting ? 'Sending...' : 'Send Message'}
+              {submitting ? 'Sending...' : 'Let\'s Work Together 🚀'}
             </button>
           </form>
         </div>

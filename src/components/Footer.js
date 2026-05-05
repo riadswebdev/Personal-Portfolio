@@ -126,11 +126,13 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="tel:+0081314674108"
+                  href="https://github.com/djriad157764-creator"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-3 text-slate-400 hover:text-cyan-400 transition-colors group"
                 >
-                  <span className="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-700 group-hover:border-cyan-400 transition-colors text-base">📞</span>
-                  <span className="text-sm">+0081314674108</span>
+                  <span className="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-700 group-hover:border-cyan-400 transition-colors text-base">⌨</span>
+                  <span className="text-sm">github.com/djriad157764-creator</span>
                 </a>
               </li>
               <li>
