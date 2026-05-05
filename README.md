@@ -110,9 +110,9 @@ Building this portfolio allowed me to level up my skills in several areas:
 
 ## 👨‍💻 Author Info
 
-*   **Name:** DevArchitect / [Your Name Here]
-*   **Email:** [Your Email Address Here]
-*   **Phone:** [Your Phone Number Here]
+*   **Name:** DevArchitect / [Muhammad Riad Sheikh ]
+*   **Email:** [mdriadshekh586@gmail.com]
+*   **Phone:** [+8801314674108]
 
 ---
 <div align="center">

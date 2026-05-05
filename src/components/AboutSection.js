@@ -36,6 +36,23 @@ export default function AboutSection() {
       duration: 1,
       ease: "power3.out"
     });
+
+    // GSAP Counter animation
+    gsap.utils.toArray(".stat-number").forEach(el => {
+      const target = parseInt(el.getAttribute("data-target"));
+      if (!isNaN(target)) {
+        gsap.to(el, {
+          scrollTrigger: {
+            trigger: container.current,
+            start: "top 80%",
+          },
+          innerHTML: target,
+          duration: 2,
+          snap: { innerHTML: 1 },
+          ease: "power2.out"
+        });
+      }
+    });
   }, { scope: container });
 
   return (
@@ -53,20 +70,20 @@ export default function AboutSection() {
       
       <div className="about-stats grid grid-cols-2 gap-gutter">
         <div className="glass-card p-stack-lg rounded-2xl flex flex-col items-center text-center">
-          <span className="text-h2 font-h2 text-primary-container">50+</span>
-          <p className="text-on-surface-variant font-label-caps">Projects Delivered</p>
+          <span className="text-h2 font-h2 text-primary-container"><span className="stat-number" data-target="5">0</span>+</span>
+          <p className="text-on-surface-variant font-label-caps">Projects Built</p>
         </div>
         <div className="glass-card p-stack-lg rounded-2xl flex flex-col items-center text-center">
-          <span className="text-h2 font-h2 text-tertiary-container">5+</span>
-          <p className="text-on-surface-variant font-label-caps">Years Experience</p>
+          <span className="text-h2 font-h2 text-tertiary-container"><span className="stat-number" data-target="1">0</span>+</span>
+          <p className="text-on-surface-variant font-label-caps">Year Learning</p>
         </div>
         <div className="glass-card p-stack-lg rounded-2xl flex flex-col items-center text-center">
-          <span className="text-h2 font-h2 text-primary-container">100%</span>
-          <p className="text-on-surface-variant font-label-caps">Satisfaction</p>
+          <span className="text-h2 font-h2 text-primary-container"><span className="stat-number" data-target="100">0</span>%</span>
+          <p className="text-on-surface-variant font-label-caps">Commitment</p>
         </div>
         <div className="glass-card p-stack-lg rounded-2xl flex flex-col items-center text-center">
-          <span className="text-h2 font-h2 text-tertiary-container">24/7</span>
-          <p className="text-on-surface-variant font-label-caps">Precision Support</p>
+          <span className="text-h2 font-h2 text-tertiary-container">Open</span>
+          <p className="text-on-surface-variant font-label-caps">To Opportunities</p>
         </div>
       </div>
     </section>

@@ -148,9 +148,14 @@ export default function TopNavBar() {
         </div>
         
         <div className="flex items-center gap-4">
-          <button className="hidden sm:block active:scale-95 transition-transform bg-primary-container text-lg text-on-primary-container px-5 py-2 rounded-lg font-bold hover:brightness-110">
+          <a
+            href="/cv.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:block active:scale-95 transition-transform bg-primary-container text-lg text-on-primary-container px-5 py-2 rounded-lg font-bold hover:brightness-110"
+          >
             CV
-          </button>
+          </a>
           <span className="hidden sm:block material-symbols-outlined text-cyan-400 cursor-pointer hover:rotate-12 transition-transform">terminal</span>
           
           {/* Mobile Menu Toggle */}
@@ -206,9 +211,14 @@ export default function TopNavBar() {
             ))}
             
             <div className="pt-6 mt-4 border-t border-slate-800/50 flex flex-col sm:hidden gap-4">
-              <button className="active:scale-95 transition-transform bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold hover:brightness-110 w-full text-center">
+              <a
+                href="/cv.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="active:scale-95 transition-transform bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold hover:brightness-110 w-full text-center block"
+              >
                 CV
-              </button>
+              </a>
             </div>
           </div>
         </div>

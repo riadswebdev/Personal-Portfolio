@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import TypewriterBanner from "./TypewriterBanner";
 
 export default function HeroSection() {
   const container = useRef(null);
@@ -35,19 +36,28 @@ export default function HeroSection() {
 
   return (
     <section ref={container} className="min-h-[819px] flex flex-col md:flex-row items-center justify-between py-section-gap gap-stack-lg relative" id="home">
-      <div className="hero-bg-glow absolute top-0 left-0 w-96 h-96 bg-primary-container/10 blur-[120px] -z-10 rounded-full"></div>
+      <div className="hero-bg-glow absolute top-0 left-0 w-96 h-96   -z-10 rounded-full"></div>
       
       <div className="hero-content flex-1 space-y-stack-md text-center md:text-left">
-        <p className="font-label-caps text-label-caps text-primary-container uppercase">Frontend Architect</p>
+        {/* Available for Work badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-green-400/30 bg-green-400/10 text-green-400 text-xs font-bold tracking-widest uppercase">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+          </span>
+          Available for Work
+        </div>
+        <p className="font-label-caps text-label-caps text-primary-container uppercase">Frontend Developer</p>
         <h1 className="font-h1 text-h1 text-on-surface max-w-2xl">
           Building the Future of the <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-tertiary-container">Web</span>
         </h1>
+        <TypewriterBanner />
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
          A creative Frontend Developer focused on modern UI design, responsive web development, and interactive user experiences using React and Next.js.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-stack-md justify-center md:justify-start">
-          <a href="/myself.pdf" download="myself.pdf" className="bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold text-xl hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all text-center">
+          <a href="/cv.html" target="_blank" rel="noopener noreferrer" className="bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-bold text-xl hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all text-center">
             Get CV
           </a>
           <div className="flex gap-4">

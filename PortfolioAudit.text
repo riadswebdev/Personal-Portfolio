@@ -1,0 +1,72 @@
+I want to implement Phase 2 (Visual Upgrades) in my portfolio project.
+
+My stack: React + Next.js + Tailwind + GSAP
+
+Implement the following features step by step:
+
+1. Filterable Projects (All / React / Next.js)
+2. Counter animation for About stats (GSAP)
+3. Marquee tech icons row (infinite horizontal scroll)
+4. 3D Tilt effect on project cards (vanilla-tilt or CSS)
+5. Wave SVG animation above footer
+6. Custom 404 page (Next.js not-found.js)
+
+For EACH feature:
+- Tell me which file to edit/create
+- Give clean, minimal code (no unnecessary complexity)
+- Keep animations smooth and not heavy
+- Make sure it is responsive
+
+Also:
+- Avoid overengineering
+- Keep performance optimized
+- Use GSAP where possible (since already installed)
+
+At the end:
+- Suggest small UI improvements if needed
+
+
+
+Now I want to improve my portfolio with some advanced polish features.
+
+From this list:
+
+1. Custom cursor animation
+2. Particle background in hero
+3. Project modal popup
+4. Dark/Light mode toggle (next-themes)
+5. GitHub Stats card
+
+Your task:
+
+1. Select ONLY the best 2 features that will:
+   - improve visual quality the most
+   - NOT hurt performance
+   - keep the portfolio professional
+
+2. For the selected features:
+   - give step-by-step implementation
+   - mention file changes
+   - provide clean code
+
+3. Briefly explain why you skipped the others
+
+Keep everything lightweight and production-ready.
+
+
+I am planning future improvements for my portfolio.
+
+Here are the optional features:
+
+1. PWA support
+2. Blog section
+3. Testimonials carousel
+
+Your task:
+
+1. Tell me which feature I should implement FIRST for real-world value
+2. Explain why (from a recruiter/client perspective)
+3. Give a simple implementation roadmap (no code needed, just steps)
+4. Mention any backend or tools required
+
+Keep it practical and not overcomplicated.
