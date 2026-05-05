@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV – Md Riad Shekh | Frontend Web Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #1a1a2e;
+      --sidebar:   #16213e;
+      --accent:    #00f0ff;
+      --accent2:   #b48aff;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --card:      rgba(255,255,255,0.05);
+      --border:    rgba(0,240,255,0.18);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+    }
+
+    .cv-wrapper {
+      width: 900px;
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px var(--border);
+    }
+
+    /* ── SIDEBAR ───────────────────────────────── */
+    .sidebar {
+      background: var(--sidebar);
+      padding: 40px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      border-right: 1px solid var(--border);
+    }
+
+    .profile-photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 24px rgba(0,240,255,0.35);
+      margin: 0 auto;
+      display: block;
+    }
+
+    .name-block { text-align: center; }
+    .name-block h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .name-block p {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .section-title::before {
+      content: '';
+      width: 16px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .contact-list li span.icon {
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .contact-list a { color: var(--accent); text-decoration: none; word-break: break-all; }
+    .contact-list a:hover { text-decoration: underline; }
+
+    .skill-group { margin-bottom: 12px; }
+    .skill-group h4 { font-size: 0.72rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 0.7rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .edu-school { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+    .edu-year   { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+
+    .interest-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .interest-list li {
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .interest-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent2);
+      flex-shrink: 0;
+    }
+
+    /* ── MAIN ──────────────────────────────────── */
+    .main {
+      background: var(--bg);
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .summary-text {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--muted);
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+    }
+
+    .main-section-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .main-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 40px; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+    }
+    .project-card:last-child { margin-bottom: 0; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .project-title { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+
+    .project-links { display: flex; gap: 8px; flex-shrink: 0; }
+    .project-links a {
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      transition: all 0.2s;
+    }
+    .project-links a.filled {
+      background: var(--accent);
+      color: #0d0d1a;
+      border-color: var(--accent);
+    }
+
+    .project-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; line-height: 1.6; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .project-tag {
+      background: rgba(180,138,255,0.12);
+      border: 1px solid rgba(180,138,255,0.3);
+      border-radius: 5px;
+      padding: 2px 8px;
+      font-size: 0.65rem;
+      color: var(--accent2);
+      font-weight: 600;
+    }
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .feature-list li {
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .feature-list li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+
+    .cert-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cert-platform { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+    .cert-status {
+      font-size: 0.7rem;
+      background: rgba(0,240,255,0.12);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    /* ── PRINT ─────────────────────────────────── */
+    @media print {
+      body { background: white; padding: 0; }
+      .cv-wrapper {
+        border-radius: 0;
+        box-shadow: none;
+        width: 100%;
+      }
+      .sidebar { background: #16213e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .main    { background: #1a1a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-wrapper">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+      <img
+        class="profile-photo"
+        src="https://i.ibb.co.com/5X4sD47X/riad.png"
+        alt="Md Riad Shekh"
+      />
+
+      <div class="name-block">
+        <h1>MD RIAD SHEKH</h1>
+        <p>Frontend Web Developer</p>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="section-title">Contact</div>
+        <ul class="contact-list">
+          <li><span class="icon">✉</span><a href="mailto:mdriadshekh586@gmail.com">mdriadshekh586@gmail.com</a></li>
+          <li><span class="icon">📞</span>+0081314674108</li>
+          <li><span class="icon">in</span><a href="https://www.linkedin.com/in/riad-shekh" target="_blank">LinkedIn Profile</a></li>
+          <li><span class="icon">⌥</span><a href="https://github.com/djriad157764-creator" target="_blank">GitHub</a></li>
+          <li><span class="icon">🌐</span><a href="#">Portfolio</a></li>
+        </ul>
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <div class="section-title">Skills</div>
+        <div class="skill-group">
+          <h4>Frontend</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">React</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Frameworks</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Next.js</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Styling</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">DaisyUI</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Tools</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">Vercel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div>
+        <div class="section-title">Education</div>
+        <p class="edu-school">Adar Hat Adarsho High School</p>
+        <p class="edu-year">Passing Year: 2018</p>
+      </div>
+
+      <!-- Interests -->
+      <div>
+        <div class="section-title">Interests</div>
+        <ul class="interest-list">
+          <li>Coding</li>
+          <li>Problem Solving</li>
+          <li>Learning Tech</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <main class="main">
+
+      <!-- Summary -->
+      <div>
+        <p class="summary-text">
+          I am a passionate Frontend Web Developer skilled in HTML, CSS, JavaScript, React, and Next.js.
+          I build responsive, high-performance web applications with clean UI design using Tailwind CSS and DaisyUI.
+          I enjoy turning complex problems into simple, beautiful, and intuitive interfaces.
+        </p>
+      </div>
+
+      <!-- Projects -->
+      <div>
+        <h2 class="main-section-title">Projects</h2>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-title">Online Book Borrowing Platform</span>
+            <div class="project-links">
+              <a class="filled" href="https://online-book-borrowing-platform-delta.vercel.app" target="_blank">🔗 Live</a>
+              <a href="https://github.com/djriad157764-creator" target="_blank">GitHub</a>
+            </div>
+          </div>
+          <p class="project-desc">A full-featured digital library platform with AI-powered book recommendations, reading progress tracking, and wishlist management.</p>
+          <div class="project-tags">
+            <span class="project-tag">Next.js</span>
+            <span class="project-tag">Tailwind CSS</span>
+            <span class="project-tag">DaisyUI</span>
+            <span class="project-tag">BetterAuth</span>
+            <span class="project-tag">MongoDB</span>
+          </div>
+          <ul class="feature-list">
+            <li>Book browsing with detailed views</li>
+            <li>Read / Wishlist management</li>
+            <li>Reading progress tracking</li>
+            <li>AI-powered recommendations</li>
+            <li>Responsive design</li>
+          </ul>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-title">Personal Portfolio Website</span>
+            <div class="project-links">
+              <a class="filled" href="#" target="_blank">🔗 Live</a>
+              <a href="https://github.com/djriad157764-creator/Personal-Portfolio" target="_blank">GitHub</a>
+            </div>
+          </div>
+          <p class="project-desc">A modern developer portfolio featuring GSAP scroll animations, glassmorphism design, and a typewriter hero section.</p>
+          <div class="project-tags">
+            <span class="project-tag">Next.js</span>
+            <span class="project-tag">GSAP</span>
+            <span class="project-tag">Tailwind CSS</span>
+            <span class="project-tag">Framer Motion</span>
+          </div>
+          <ul class="feature-list">
+            <li>Animated hero with typewriter effect</li>
+            <li>GSAP scroll-triggered animations</li>
+            <li>Glassmorphism UI design</li>
+            <li>Fully responsive layout</li>
+          </ul>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-title">Frontend Learning Journey</span>
+            <div class="project-links">
+              <a href="https://github.com/djriad157764-creator" target="_blank">GitHub</a>
+            </div>
+          </div>
+          <p class="project-desc">A collection of projects and assignments completed on Programming Hero, covering HTML, CSS, JavaScript, React, and Next.js.</p>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">JavaScript ES6+</span>
+            <span class="project-tag">CSS</span>
+            <span class="project-tag">HTML</span>
+          </div>
+          <ul class="feature-list">
+            <li>JavaScript ES6+ projects</li>
+            <li>React component exercises</li>
+            <li>Responsive layouts</li>
+            <li>Problem-solving challenges</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div>
+        <h2 class="main-section-title">Certifications &amp; Learning</h2>
+        <div class="cert-card">
+          <div>
+            <p class="cert-platform">Programming Hero</p>
+            <p style="font-size:0.72rem;color:var(--muted);margin-top:3px;">Web Development Course</p>
+          </div>
+          <span class="cert-status">In Progress</span>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

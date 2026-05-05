@@ -32,34 +32,34 @@ export default function QualificationsSection() {
         <p className="text-on-surface-variant max-w-2xl mx-auto">My academic background and professional journey.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div className="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto">
         {/* Education */}
-        <div className="qual-card glass-card p-8 rounded-2xl relative overflow-hidden group hover:border-primary-container/40 transition-colors">
+        <div className="qual-card glass-card p-8 rounded-2xl relative overflow-hidden group hover:border-primary-container/40 transition-colors w-full md:w-1/2">
           <div className="absolute top-0 right-0 w-48 h-48 bg-primary-container/5 blur-[60px] -z-10 rounded-full group-hover:bg-primary-container/10 transition-colors"></div>
           <div className="flex items-center gap-4 mb-8">
             <div className="w-14 h-14 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container border border-primary-container/20">
               <span className="material-symbols-outlined text-3xl">school</span>
             </div>
-            <h3 className="text-3xl font-h3 text-on-surface">Education</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-on-surface">Education</h3>
           </div>
           
           <div className="relative pl-8 border-l-2 border-primary-container/30 space-y-8 ml-3">
             <div className="relative">
               <div className="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-primary-container shadow-[0_0_15px_rgba(0,240,255,0.6)]"></div>
               <h4 className="text-xl font-bold text-on-surface mb-1">JSC</h4>
-              <span className="inline-block px-3 py-1 bg-surface-variant/80 rounded-full text-xs font-label-caps text-primary-container border border-primary-container/20">2018</span>
+              <span className="inline-block px-3 py-1 bg-surface-variant/80 rounded-full text-xs font-bold text-primary-container border border-primary-container/20">2018</span>
             </div>
           </div>
         </div>
 
         {/* Experience */}
-        <div className="qual-card glass-card p-8 rounded-2xl relative overflow-hidden group hover:border-tertiary-container/40 transition-colors">
+        <div className="qual-card glass-card p-8 rounded-2xl relative overflow-hidden group hover:border-tertiary-container/40 transition-colors w-full md:w-1/2">
           <div className="absolute top-0 right-0 w-48 h-48 bg-tertiary-container/5 blur-[60px] -z-10 rounded-full group-hover:bg-tertiary-container/10 transition-colors"></div>
           <div className="flex items-center gap-4 mb-8">
             <div className="w-14 h-14 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary-container border border-tertiary-container/20">
               <span className="material-symbols-outlined text-3xl">work</span>
             </div>
-            <h3 className="text-3xl font-h3 text-on-surface">Experience</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-on-surface">Experience</h3>
           </div>
           
           <div className="relative pl-8 border-l-2 border-tertiary-container/30 space-y-8 ml-3 min-h-[100px] flex items-center">

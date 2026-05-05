@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
+import toast from "react-hot-toast";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -10,32 +11,34 @@ if (typeof window !== "undefined") {
 
 export default function ContactSection() {
   const container = useRef(null);
-  const [status, setStatus] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus('submitting');
-    
+    setSubmitting(true);
+
     const form = e.target;
     const data = new FormData(form);
-    
+
+    const loadingToast = toast.loading('Sending message...');
+
     try {
       const response = await fetch(form.action, {
         method: form.method,
         body: data,
-        headers: {
-          Accept: "application/json",
-        },
+        headers: { Accept: 'application/json' },
       });
-      
+
       if (response.ok) {
-        setStatus('success');
+        toast.success('Message sent! I\'ll get back to you soon. 🚀', { id: loadingToast });
         form.reset();
       } else {
-        setStatus('error');
+        toast.error('Failed to send. Please try again.', { id: loadingToast });
       }
-    } catch (error) {
-      setStatus('error');
+    } catch {
+      toast.error('Network error. Please try again.', { id: loadingToast });
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -55,7 +58,7 @@ export default function ContactSection() {
 
   return (
     <section ref={container} className="py-section-gap relative" id="contact">
-      <div className="absolute -bottom-24 right-0 w-80 h-80 bg-tertiary-container/10 blur-[100px] -z-10 rounded-full"></div>
+      <div className="absolute -bottom-24 right-0 w-80 h-80   -z-10 rounded-full"></div>
       
       <div className="contact-card glass-card rounded-[2rem] p-stack-lg md:p-16 flex flex-col md:flex-row gap-12 border-primary-container/20">
         <div className="flex-1 space-y-stack-md">
@@ -96,6 +99,7 @@ export default function ContactSection() {
         </div>
         
         <div className="flex-1">
+          {/* ⚠️  Replace YOUR_FORM_ID with your real ID from https://formspree.io */}
           <form className="space-y-4" onSubmit={handleSubmit} action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
             <div className="space-y-2">
               <label htmlFor="name" className="text-xs font-label-caps ml-1">IDENTITY</label>
@@ -110,20 +114,12 @@ export default function ContactSection() {
               <textarea id="message" name="message" required className="w-full bg-slate-900/50 border-0 border-b-2 border-slate-800 focus:border-primary-container focus:ring-0 transition-all rounded-t-lg p-4 text-on-surface" placeholder="Tell me about your project vision..." rows="4"></textarea>
             </div>
             
-            {status === 'success' && (
-              <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 text-sm">
-                Transmission successful! I'll get back to you shortly.
-              </div>
-            )}
-            
-            {status === 'error' && (
-              <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
-                Transmission failed. Please check your form ID or try again.
-              </div>
-            )}
-
-            <button disabled={status === 'submitting'} className="w-full bg-primary-container text-on-primary-container font-bold py-4 rounded-lg hover:brightness-110 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100 disabled:hover:shadow-none transition-all uppercase tracking-widest mt-4" type="submit">
-              {status === 'submitting' ? 'Transmitting...' : 'Send Transmission'}
+            <button
+              disabled={submitting}
+              className="w-full bg-primary-container text-on-primary-container font-bold py-4 rounded-lg hover:brightness-110 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100 disabled:hover:shadow-none transition-all uppercase tracking-widest mt-4"
+              type="submit"
+            >
+              {submitting ? 'Sending...' : 'Send Message'}
             </button>
           </form>
         </div>

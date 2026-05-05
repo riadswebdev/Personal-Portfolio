@@ -117,3 +117,25 @@ body {
 .skill-ring {
     transition: stroke-dashoffset 1s ease-in-out;
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+  display: flex;
+  width: max-content;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (min-width: 768px) {
+  /* Only hide default cursor on devices that support hover (desktops) */
+  @media (hover: hover) and (pointer: fine) {
+    body, a, button, input, textarea {
+      cursor: none !important;
+    }
+  }
+}
