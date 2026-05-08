@@ -102,18 +102,19 @@ export default function TopNavBar() {
     <nav className="sticky top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-cyan-400/20 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
       <div className="flex justify-between items-center h-20 px-8 max-w-[1280px] mx-auto font-h1 antialiased tracking-tight relative">
         <div className="text-2xl font-bold">
-          {/* <Image
-          src="https://i.ibb.co.com/xt1Q7VQz/Designer-1.png"
-          alt="Logo"
-          width={100}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          height={100}
-          className="object-cover w-20 sm:w-25 cursor-pointer"
-          onClick={(e) => handleNavClick(e, '#home')}
-         />  */}
-          <h2 className="material-symbols-outlined text-cyan-400 cursor-pointer">
+          <Image
+            src="https://i.ibb.co.com/yFyjjYj3/Md-Riad-Shekh.png"
+            alt="Logo"
+            width={500}
+            unoptimized
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            height={500}
+            className="object-cover w-20 sm:w-22 cursor-pointer "
+            onClick={(e) => handleNavClick(e, "#home")}
+          />
+          {/* <h2 className="material-symbols-outlined text-cyan-400 cursor-pointer">
             R i a d
-          </h2>
+          </h2> */}
         </div>
 
         {/* Desktop Navigation */}
