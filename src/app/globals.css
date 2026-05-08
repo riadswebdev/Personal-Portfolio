@@ -102,17 +102,31 @@ body {
   @apply bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary;
 }
 
+/* ── Ambient Theme Overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, var(--ambient-1, rgba(0,240,255,0.04)), transparent 70%),
+    radial-gradient(ellipse 60% 80% at 90% 80%, var(--ambient-2, rgba(168,85,247,0.04)), transparent 70%);
+  transition: background 2.5s ease;
+}
+
 .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 .glass-card {
-    background: rgba(23, 31, 51, 0.7);
+    background: var(--glass-bg, rgba(23, 31, 51, 0.7));
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 240, 255, 0.1);
+    border: 1px solid var(--glass-border, rgba(0, 240, 255, 0.1));
+    transition: background 2s ease, border-color 2s ease, box-shadow 2s ease;
 }
 .glass-card:hover {
-    border-color: rgba(0, 240, 255, 0.4);
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+    border-color: var(--glass-border-hover, rgba(0, 240, 255, 0.4));
+    box-shadow: 0 0 20px var(--glass-glow, rgba(0, 240, 255, 0.15));
 }
 .skill-ring {
     transition: stroke-dashoffset 1s ease-in-out;

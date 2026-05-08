@@ -4,6 +4,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { Toaster } from "react-hot-toast";
 import BackToTop from "@/components/BackToTop";
 import CustomCursor from "@/components/CustomCursor";
+import ThemeEvolution from "@/components/ThemeEvolution";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -65,6 +66,7 @@ export default function RootLayout({ children }) {
           }}
         />
         <BackToTop />
+        <ThemeEvolution />
       </body>
     </html>
   );

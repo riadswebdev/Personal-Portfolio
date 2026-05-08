@@ -1,0 +1,546 @@
+# Dynamic Theme Evolution System — Walkthrough
+
+## Project Analysis Summary
+
+### Architecture
+| Aspect | Details |
+|--------|---------|
+| **Framework** | Next.js 16.2.4 (App Router), React 19.2.4 |
+| **Styling** | Tailwind CSS v4 (`@tailwindcss/postcss`) + custom `@theme` tokens |
+| **Fonts** | Inter (body), Space Grotesk (headings) via `next/font/google` |
+| **Animations** | GSAP 3.15 + `@gsap/react`, Framer Motion 12.38, Lenis smooth scroll |
+| **Other** | react-icons, react-hot-toast, typewriter-effect |
+
+### Sections (8 total, in order)
+1. **TopNavBar** — Sticky nav, glass backdrop, dropdown submenu, mobile hamburger
+2. **HeroSection** — Profile image, typewriter roles, magnetic buttons, GSAP entrance
+3. **AboutSection** — Bio, activities, stat cards (GSAP counter), GitHub stats
+4. **SkillsSection** — SVG circular progress rings, marquee tech strip
+5. **DetailedSkillsSection** — Skill groups with react-icons pills
+6. **QualificationsSection** — Education/Experience timeline cards
+7. **ProjectsSection** — 3D tilt project cards, filter tabs, modal trigger
+8. **ContactSection** — Formspree contact form, contact info cards
+9. **Footer** — Wave SVG, brand, quick links, social icons
+
+### Design System
+- **Primary accent**: Cyan `#00f0ff` (`--color-primary-container`)
+- **Secondary accent**: Purple `#7000ff` (`--color-secondary-container`)
+- **Tertiary accent**: Green `#00f6bb` (`--color-tertiary-container`)
+- **Background**: Deep navy `#0b1326`
+- **Glass cards**: `rgba(23,31,51,0.7)` with `blur(12px)` and cyan borders
+- **Gradient text**: `from-cyan-400 to-purple-500`
+
+---
+
+## What Was Implemented
+
+### Dynamic Theme Evolution System
+A premium visual system that **auto-cycles through 4 distinct visual modes every 10 seconds** with smooth GSAP-powered color interpolation.
+
+### Theme Modes
+
+| Mode | Accent | Gradient | Feel |
+|------|--------|----------|------|
+| **Cyber Neon** (default) | Cyan `#00f0ff` | Cyan → Purple | Vibrant neon glows |
+| **Glass Premium** | Violet `#a78bfa` | Violet → Blue | Frosted, softer feel |
+| **Minimal Pro** | Slate `#e2e8f0` | White → Slate | Clean, professional |
+| **Creative Motion** | Emerald `#34d399` | Emerald → Rose | Warm, expressive |
+
+### What Changes Per Theme
+- ✅ Background colors & surface tones
+- ✅ Accent colors (buttons, borders, text highlights)
+- ✅ Section title gradient colors
+- ✅ Glass card backgrounds, borders & glow effects
+- ✅ Ambient background radial gradients
+- ✅ Skill ring / progress indicator colors
+- ✅ Navigation active states & hover accents
+- ✅ Back-to-top button color
+- ✅ Footer link accents
+
+---
+
+## Files Changed
+
+### [NEW] [ThemeEvolution.js](file:///d:/PROJECT/Next.js/My%20Portfolio/src/components/ThemeEvolution.js)
+- Client component managing the 4-theme auto-cycle system
+- Uses GSAP `gsap.to()` with a proxy object for smooth hex color interpolation
+- Overrides Tailwind v4 CSS custom properties (`--color-*`) on `document.documentElement`
+- Includes a compact theme indicator pill (bottom-left) with:
+  - Current theme name & icon
+  - Progress bar showing time until next cycle
+  - Hover-to-expand theme selector popup
+  - Pause-on-hover behavior
+
+### [MODIFY] [globals.css](file:///d:/PROJECT/Next.js/My%20Portfolio/src/app/globals.css)
+```diff:globals.css
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/container-queries";
+
+@theme {
+  --color-primary-fixed: #7df4ff;
+  --color-on-secondary-fixed-variant: #5700c9;
+  --color-on-tertiary-fixed-variant: #00513c;
+  --color-tertiary-fixed: #36ffc4;
+  --color-inverse-on-surface: #283044;
+  --color-error-container: #93000a;
+  --color-on-surface: #dae2fd;
+  --color-on-surface-variant: #b9cacb;
+  --color-error: #ffb4ab;
+  --color-on-primary-fixed-variant: #004f54;
+  --color-outline: #849495;
+  --color-surface-variant: #2d3449;
+  --color-surface-container-highest: #2d3449;
+  --color-secondary-container: #7000ff;
+  --color-on-error: #690005;
+  --color-on-tertiary: #003828;
+  --color-surface-tint: #00dbe9;
+  --color-primary: #dbfcff;
+  --color-on-background: #dae2fd;
+  --color-tertiary-fixed-dim: #00e1ab;
+  --color-on-primary: #00363a;
+  --color-on-primary-container: #006970;
+  --color-secondary-fixed: #e9ddff;
+  --color-surface: #0b1326;
+  --color-on-secondary: #3c0090;
+  --color-tertiary: #d6ffeb;
+  --color-inverse-primary: #006970;
+  --color-primary-fixed-dim: #00dbe9;
+  --color-on-tertiary-fixed: #002116;
+  --color-secondary-fixed-dim: #d1bcff;
+  --color-primary-container: #00f0ff;
+  --color-surface-container-high: #222a3d;
+  --color-surface-container-lowest: #060e20;
+  --color-surface-container-low: #131b2e;
+  --color-surface-dim: #0b1326;
+  --color-background: #0b1326;
+  --color-surface-container: #171f33;
+  --color-on-tertiary-container: #006c50;
+  --color-inverse-surface: #dae2fd;
+  --color-outline-variant: #3b494b;
+  --color-on-error-container: #ffdad6;
+  --color-on-secondary-container: #ddcdff;
+  --color-on-primary-fixed: #002022;
+  --color-tertiary-container: #00f6bb;
+  --color-secondary: #d1bcff;
+  --color-surface-bright: #31394d;
+  --color-on-secondary-fixed: #23005b;
+
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  --spacing-section-gap: 120px;
+  --spacing-stack-sm: 8px;
+  --spacing-gutter: 24px;
+  --spacing-stack-lg: 32px;
+  --spacing-margin: 32px;
+  --spacing-stack-md: 16px;
+  --spacing-container-max: 1280px;
+
+  --font-body-md: var(--font-inter);
+  --font-h1: var(--font-space-grotesk);
+  --font-label-caps: var(--font-space-grotesk);
+  --font-h2: var(--font-space-grotesk);
+  --font-body-lg: var(--font-inter);
+  --font-h3: var(--font-space-grotesk);
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.6;
+  --text-body-md--font-weight: 400;
+
+  --text-h1: 64px;
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 700;
+
+  --text-label-caps: 14px;
+  --text-label-caps--line-height: 1;
+  --text-label-caps--letter-spacing: 0.1em;
+  --text-label-caps--font-weight: 600;
+
+  --text-h2: 48px;
+  --text-h2--line-height: 1.2;
+  --text-h2--font-weight: 600;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--font-weight: 400;
+
+  --text-h3: 32px;
+  --text-h3--line-height: 1.3;
+  --text-h3--font-weight: 600;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  @apply bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.glass-card {
+    background: rgba(23, 31, 51, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 240, 255, 0.1);
+}
+.glass-card:hover {
+    border-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+}
+.skill-ring {
+    transition: stroke-dashoffset 1s ease-in-out;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+  display: flex;
+  width: max-content;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (min-width: 768px) {
+  /* Only hide default cursor on devices that support hover (desktops) */
+  @media (hover: hover) and (pointer: fine) {
+    body, a, button, input, textarea {
+      cursor: none !important;
+    }
+  }
+}
+===
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/container-queries";
+
+@theme {
+  --color-primary-fixed: #7df4ff;
+  --color-on-secondary-fixed-variant: #5700c9;
+  --color-on-tertiary-fixed-variant: #00513c;
+  --color-tertiary-fixed: #36ffc4;
+  --color-inverse-on-surface: #283044;
+  --color-error-container: #93000a;
+  --color-on-surface: #dae2fd;
+  --color-on-surface-variant: #b9cacb;
+  --color-error: #ffb4ab;
+  --color-on-primary-fixed-variant: #004f54;
+  --color-outline: #849495;
+  --color-surface-variant: #2d3449;
+  --color-surface-container-highest: #2d3449;
+  --color-secondary-container: #7000ff;
+  --color-on-error: #690005;
+  --color-on-tertiary: #003828;
+  --color-surface-tint: #00dbe9;
+  --color-primary: #dbfcff;
+  --color-on-background: #dae2fd;
+  --color-tertiary-fixed-dim: #00e1ab;
+  --color-on-primary: #00363a;
+  --color-on-primary-container: #006970;
+  --color-secondary-fixed: #e9ddff;
+  --color-surface: #0b1326;
+  --color-on-secondary: #3c0090;
+  --color-tertiary: #d6ffeb;
+  --color-inverse-primary: #006970;
+  --color-primary-fixed-dim: #00dbe9;
+  --color-on-tertiary-fixed: #002116;
+  --color-secondary-fixed-dim: #d1bcff;
+  --color-primary-container: #00f0ff;
+  --color-surface-container-high: #222a3d;
+  --color-surface-container-lowest: #060e20;
+  --color-surface-container-low: #131b2e;
+  --color-surface-dim: #0b1326;
+  --color-background: #0b1326;
+  --color-surface-container: #171f33;
+  --color-on-tertiary-container: #006c50;
+  --color-inverse-surface: #dae2fd;
+  --color-outline-variant: #3b494b;
+  --color-on-error-container: #ffdad6;
+  --color-on-secondary-container: #ddcdff;
+  --color-on-primary-fixed: #002022;
+  --color-tertiary-container: #00f6bb;
+  --color-secondary: #d1bcff;
+  --color-surface-bright: #31394d;
+  --color-on-secondary-fixed: #23005b;
+
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  --spacing-section-gap: 120px;
+  --spacing-stack-sm: 8px;
+  --spacing-gutter: 24px;
+  --spacing-stack-lg: 32px;
+  --spacing-margin: 32px;
+  --spacing-stack-md: 16px;
+  --spacing-container-max: 1280px;
+
+  --font-body-md: var(--font-inter);
+  --font-h1: var(--font-space-grotesk);
+  --font-label-caps: var(--font-space-grotesk);
+  --font-h2: var(--font-space-grotesk);
+  --font-body-lg: var(--font-inter);
+  --font-h3: var(--font-space-grotesk);
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.6;
+  --text-body-md--font-weight: 400;
+
+  --text-h1: 64px;
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 700;
+
+  --text-label-caps: 14px;
+  --text-label-caps--line-height: 1;
+  --text-label-caps--letter-spacing: 0.1em;
+  --text-label-caps--font-weight: 600;
+
+  --text-h2: 48px;
+  --text-h2--line-height: 1.2;
+  --text-h2--font-weight: 600;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--font-weight: 400;
+
+  --text-h3: 32px;
+  --text-h3--line-height: 1.3;
+  --text-h3--font-weight: 600;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+  @apply bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary;
+}
+
+/* ── Ambient Theme Overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 20%, var(--ambient-1, rgba(0,240,255,0.04)), transparent 70%),
+    radial-gradient(ellipse 60% 80% at 90% 80%, var(--ambient-2, rgba(168,85,247,0.04)), transparent 70%);
+  transition: background 2.5s ease;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.glass-card {
+    background: var(--glass-bg, rgba(23, 31, 51, 0.7));
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border, rgba(0, 240, 255, 0.1));
+    transition: background 2s ease, border-color 2s ease, box-shadow 2s ease;
+}
+.glass-card:hover {
+    border-color: var(--glass-border-hover, rgba(0, 240, 255, 0.4));
+    box-shadow: 0 0 20px var(--glass-glow, rgba(0, 240, 255, 0.15));
+}
+.skill-ring {
+    transition: stroke-dashoffset 1s ease-in-out;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+  display: flex;
+  width: max-content;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (min-width: 768px) {
+  /* Only hide default cursor on devices that support hover (desktops) */
+  @media (hover: hover) and (pointer: fine) {
+    body, a, button, input, textarea {
+      cursor: none !important;
+    }
+  }
+}
+```
+
+- `.glass-card` now uses CSS variables (`--glass-bg`, `--glass-border`, `--glass-border-hover`, `--glass-glow`) instead of hardcoded `rgba()` values
+- Added `transition` property on `.glass-card` for smooth color changes
+- Added `body::before` ambient gradient overlay using `--ambient-1` and `--ambient-2` variables
+
+### [MODIFY] [layout.js](file:///d:/PROJECT/Next.js/My%20Portfolio/src/app/layout.js)
+```diff:layout.js
+import { Inter, Space_Grotesk } from "next/font/google";
+import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
+import { Toaster } from "react-hot-toast";
+import BackToTop from "@/components/BackToTop";
+import CustomCursor from "@/components/CustomCursor";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+export const metadata = {
+  title: "Md Riad Shekh | Frontend Web Developer",
+  description: "Frontend Web Developer skilled in React, Next.js, and Tailwind CSS. Building responsive, modern web applications.",
+  openGraph: {
+    title: "Md Riad Shekh | Frontend Web Developer",
+    description: "Frontend Web Developer skilled in React, Next.js, and Tailwind CSS.",
+    url: "https://djriad157764-creator.github.io",
+    siteName: "Md Riad Shekh Portfolio",
+    images: [
+      {
+        url: "https://i.ibb.co.com/5X4sD47X/riad.png",
+        width: 400,
+        height: 400,
+        alt: "Md Riad Shekh",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Md Riad Shekh | Frontend Web Developer",
+    description: "Frontend Web Developer skilled in React, Next.js, and Tailwind CSS.",
+    creator: "@md32316",
+  },
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" className={`dark ${inter.variable} ${spaceGrotesk.variable}`}>
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+      </head>
+      <body>
+        <CustomCursor />
+        <SmoothScroll>{children}</SmoothScroll>
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: "#0f172a",
+              color: "#e2e8f0",
+              border: "1px solid rgba(0,240,255,0.2)",
+              borderRadius: "12px",
+              fontSize: "0.875rem",
+            },
+            success: { iconTheme: { primary: "#00f0ff", secondary: "#0f172a" } },
+            error:   { iconTheme: { primary: "#f87171", secondary: "#0f172a" } },
+          }}
+        />
+        <BackToTop />
+      </body>
+    </html>
+  );
+}
+===
+import { Inter, Space_Grotesk } from "next/font/google";
+import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
+import { Toaster } from "react-hot-toast";
+import BackToTop from "@/components/BackToTop";
+import CustomCursor from "@/components/CustomCursor";
+import ThemeEvolution from "@/components/ThemeEvolution";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+export const metadata = {
+  title: "Md Riad Shekh | Frontend Web Developer",
+  description: "Frontend Web Developer skilled in React, Next.js, and Tailwind CSS. Building responsive, modern web applications.",
+  openGraph: {
+    title: "Md Riad Shekh | Frontend Web Developer",
+    description: "Frontend Web Developer skilled in React, Next.js, and Tailwind CSS.",
+    url: "https://djriad157764-creator.github.io",
+    siteName: "Md Riad Shekh Portfolio",
+    images: [
+      {
+        url: "https://i.ibb.co.com/5X4sD47X/riad.png",
+        width: 400,
+        height: 400,
+        alt: "Md Riad Shekh",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Md Riad Shekh | Frontend Web Developer",
+    description: "Frontend Web Developer skilled in React, Next.js, and Tailwind CSS.",
+    creator: "@md32316",
+  },
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" className={`dark ${inter.variable} ${spaceGrotesk.variable}`}>
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+      </head>
+      <body>
+        <CustomCursor />
+        <SmoothScroll>{children}</SmoothScroll>
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: "#0f172a",
+              color: "#e2e8f0",
+              border: "1px solid rgba(0,240,255,0.2)",
+              borderRadius: "12px",
+              fontSize: "0.875rem",
+            },
+            success: { iconTheme: { primary: "#00f0ff", secondary: "#0f172a" } },
+            error:   { iconTheme: { primary: "#f87171", secondary: "#0f172a" } },
+          }}
+        />
+        <BackToTop />
+        <ThemeEvolution />
+      </body>
+    </html>
+  );
+}
+```
+
+- Imported and rendered `<ThemeEvolution />` in the root layout body
+
+---
+
+## Architecture Decision: Why CSS Custom Properties + GSAP?
+
+The key insight: **Tailwind CSS v4 compiles utilities to CSS custom properties**. For example, `text-cyan-400` resolves to `color: var(--color-cyan-400)`. By overriding these variables at runtime on `document.documentElement.style`, every Tailwind utility across all components automatically picks up the new colors — **zero component modifications required**.
+
+GSAP handles the color interpolation natively (it detects hex strings and interpolates in RGB space), making transitions butter-smooth at 60fps.
+
+## What Was NOT Changed
+- ❌ No existing components were modified
+- ❌ No existing animations were removed or altered
+- ❌ No layout/responsiveness was affected
+- ❌ No new dependencies were added
+- ❌ No performance degradation (GSAP runs on requestAnimationFrame)
+
+## Browser Recording
+![Theme Evolution Demo](C:/Users/Pc/.gemini/antigravity/brain/8eefee2b-ad43-4024-8b86-e3c201b5e860/theme_verification_1778176610280.webp)
